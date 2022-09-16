@@ -1,0 +1,123 @@
+url,version,category,resolveddate,spl,description
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-28,"DBX-4356, DBX-3868",NPE when running dbxquery with shortname=false on driver not supporting prepared statement metadata
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-26,"DBX-4218, DBX-4027",DBX settings.py conflicts with Django settings.py
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-26,"DBX-4351, DBX-4032",Driver unrelated jars are copied to drivers folder during migration
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-26,"DBX-4353, DBX-3962",Application dropdown during input/output/lookup creation truncates to 30 apps
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-26,"DBX-4352, DBX-3990",Multiple issues if '/' is used in input/output/lookup name
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-26,DBX-4347,The help link of sending usage data page is broken
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-21,DBX-4336,Incorrect enabled/disabled filter label
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-21,DBX-4337,Help link pages are opened in current window
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-20,DBX-4315,Global sharing permission isn't migrated from v2 to v3
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-19,DBX-4314,NPE(Null pointer exception) when a event match multiple rows and some row values are null
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-18,DBX-3883,Output can be deleted or enabled/disabled even if it is used by a modular alert
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-18,DBX-4298,Informix connection validation is inconsistent if informix server is empty
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-18,"DBX-4312, DBX-4309",nvarchar/ntext columns are not displayed when JTDS driver is used
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-16,DBX-4301,Modal is not disposed if an error occured
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-16,DBX-4304,Non ASCII characters are not supported in stanza attributes
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-15,"DBX-4290, DBX-4254",Fetchsize setting in dbxquery command option is ignored
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-15,DBX-3020,"In DB table, if some column name starts with space character, lookup would fail on it."
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-13,DBX-4285,Migration will fail if connection's sharing permission is not set to global
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-12,DBX-4022,Use Windows Authentication Domain setting is ignored when creating a connection
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-12,DBX-3145,dbxlookup preview is incorrect if multiple values match the event fields
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-11,DBX-4090,Private saved search can be selected to create an output
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-11,DBX-4261,XMLStreamException is output to splunkd.log on task server's start
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-11,"DBX-4060, DBX-4054",Db connect not honoring query_timeout setting during input preview
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-08,DBX-4266,Task server scheme is not correclty sent to Splunkd
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-08,DBX-4251,Object cannot be cloned when using db_connect_admin role
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-07,DBX-4259,Requests to task server are logged in splunkd.log
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-07,DBX-4260,Diag.py will fail on windows to find the checkpoint folder
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-05,DBX-3841,"McAfee, Nagios, Oracle, Microsoft SQL Add-ons newly installed are not supported"
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-06-04,DBX-4213,NULL value cannot be used as stored procedure parameter
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-05-31,DBX-4154,Inputs on table containing non ASCII characters are not indexed correctly
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-05-31,DBX-4188,If a lot of messages are displayed it can fill the screen
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-05-30,DBX-4146,Some capabilities are duplicated in authorize.conf
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-05-27,DBX-4165,Unable to admin DB Connect entities with role db_connect_admin
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-05-24,DBX-4158,Global sharing permission is incorrectly migrated from v2 to v3
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-05-23,"DBX-4124, DBX-4140",The task server will not restart without restarting Splunk if JAVA_HOME refers to a not supported version of Java
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-05-22,"DBX-4140, DBX-4124",Taskserver failed to restart if default java is not version 8
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-05-22,DBX-4193,Input tries to index BLOB although they are not supported
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-05-22,DBX-3779,The connection fails when the hostname contains a blank
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-05-16,DBX-1443,dblookup/dbxlookup does not rename on alias fields that have space
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-05-16,"DBX-4081, DBX-4021",Timezone override in props.conf is ignored
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-05-12,DBX-4139,HEC won't be enabled when taskserver restarts
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-05-09,DBX-4111,"Number of exported events from a saved search using an output is limited to 500,000"
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-05-09,DBX-4091,When using a saved search in an output fields extracted during search time are not exported
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-05-08,DBX-3978,Warnings from searchbnf.conf file reported in splunkd.log
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-05-03,DBX-4089,Lack of statistics about scheduled output job
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-05-02,DBX-3749,Error messages of insufficient permission are inconsistent
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-04-27,DBX-3616,Output cannot be used with driver which do not support batch operations
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-04-26,DBX-4058,"If column selected as index time is not a timestamp, the current time is used"
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-04-25,DBX-3777,On output creation search result preview ignores the time range defined in a savedsearch
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-04-14,DBX-3876,Naive cron expression validation for DBX input/output
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-04-11,DBX-2820,Unsupported JVM error message is too generic
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-04-11,DBX-3570,Reload API will reload both output and input tasks
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-04-11,DBX-4024,'testQuery' setting in db_connection_types.conf is ignored
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-04-06,DBX-3829,"Scheduled jobs (inputs, outputs) ignore updates on its connection or its identity"
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-03-22,DBX-3699,The same field name can be used for event and output lookup field
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-03-21,DBX-3746,The customized JAVA_HOME setting is ignored for output modular alert
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-03-21,DBX-3974,First Time Run page typo
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-03-19,DBX-3805,No error message in UI if there is a SQL error when executing output command
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-03-15,DBX-3939,Deprecated property enable_query_wrapping is created in db_connections.conf
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-03-13,DBX-3833,"Editing a lookup named like ""mi_lookup://xxx"" will open inputs page"
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-03-09,DBX-3928,Invalid conf value causing task server to fail
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-03-08,DBX-3831,Error message when user does not have write access to checkpoint folder is unclear
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-03-06,DBX-3924,Task server can't start if server.vmopts does not exist in windows
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-03-02,DBX-3884,Unable to enable an output if referenced by an output alert
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-03-02,DBX-3838,Improper health panel labels
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-02-27,DBX-3880,"If an input cannot be migrated because of missing checkpoint value, its name is not specified"
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-02-27,DBX-3842,Log file naming does not follow Splunk convention
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-02-22,"DBX-3851, DBX-3819",Query ending a with semi-colon character will fail in Oracle
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-02-19,DBX-3706,Create an input using an existing name does not return a clear error message
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-02-19,DBX-3345,A cloned lookup with a different connection cannot be saved
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-02-07,DBX-3732,Inputs with similar names (e.g. different case) cause checkpoint file conflict
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-01-25,DBX-3796,Wrong error message when java server returns 500 HTTP code
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-01-22,DBX-3737,Column with same name will be overwritten in dbxquery if shortnames is set to false
+https://docs.splunk.com/Documentation/DBX/3.1.0/ReleaseNotes/Releasenotes,3.1.0,dbx,2017-01-18,DBX-3555,Filter set on table listing objects are lost during navigation
+https://docs.splunk.com/Documentation/DBX/3.1.1/ReleaseNotes/Releasenotes,3.1.1,dbx,2017-08-22,"DBX-4389, DBX-4386",Unindexable fields increase the license usage.
+https://docs.splunk.com/Documentation/DBX/3.1.1/ReleaseNotes/Releasenotes,3.1.1,dbx,2017-08-13,DBX-4407,"Inputs using a rising column with types: datetime, timestamp, date, time cannot be bulk edited after the preview is run"
+https://docs.splunk.com/Documentation/DBX/3.1.1/ReleaseNotes/Releasenotes,3.1.1,dbx,2017-08-07,DBX-4385,Time zone defined on a connection is applied to all time related fields
+https://docs.splunk.com/Documentation/DBX/3.1.1/ReleaseNotes/Releasenotes,3.1.1,dbx,2017-08-07,"DBX-4373, DBX-4372",Lookup with multiple keys does not return results
+https://docs.splunk.com/Documentation/DBX/3.1.1/ReleaseNotes/Releasenotes,3.1.1,dbx,2017-08-06,"DBX-4391, DBX-4378",Index cannot be set without selecting an existing one
+https://docs.splunk.com/Documentation/DBX/3.1.1/ReleaseNotes/Releasenotes,3.1.1,dbx,2017-07-20,DBX-4381,Audit log file for commands does not rotate
+https://docs.splunk.com/Documentation/DBX/3.1.2/ReleaseNotes/Releasenotes,3.1.2,dbx,2017-12-15,DBX-4472,rh_healthlog and rh_usage_data are invalid entries in restmap.conf
+https://docs.splunk.com/Documentation/DBX/3.1.2/ReleaseNotes/Releasenotes,3.1.2,dbx,2017-12-13,DBX-4491,Upgrade third party libraries for CVE-2017-9735 and CVE-2017-7525.
+https://docs.splunk.com/Documentation/DBX/3.1.2/ReleaseNotes/Releasenotes,3.1.2,dbx,2017-12-13,DBX-4482,Task server listens on all IP addresses
+https://docs.splunk.com/Documentation/DBX/3.1.2/ReleaseNotes/Releasenotes,3.1.2,dbx,2017-12-09,"DBX-4451, DBX-4434",Pooled connections are not closed when a connection is disabled or deleted
+https://docs.splunk.com/Documentation/DBX/3.1.2/ReleaseNotes/Releasenotes,3.1.2,dbx,2017-12-04,"DBX-4400, DBX-4399",Task server cannot start on SHC if captain is static
+https://docs.splunk.com/Documentation/DBX/3.1.2/ReleaseNotes/Releasenotes,3.1.2,dbx,2017-11-29,DBX-4476,Updating DB credentials are not propagated to inputs and outputs
+https://docs.splunk.com/Documentation/DBX/3.1.3/ReleaseNotes/Releasenotes,3.1.3,dbx,2018-03-01,DBX-4454,Invalid rising column index value when non-indexable columns are skipped
+https://docs.splunk.com/Documentation/DBX/3.1.3/ReleaseNotes/Releasenotes,3.1.3,dbx,2018-02-15,DBX-4527,dbxquery cannot start on Splunk Enterprise 7+ if users set a time zone in their preferences
+https://docs.splunk.com/Documentation/DBX/3.1.4/ReleaseNotes/Releasenotes,3.1.4,dbx,2018-11-29,DBX-4589,java.io.IOException: Push back buffer is full
+https://docs.splunk.com/Documentation/DBX/3.1.4/ReleaseNotes/Releasenotes,3.1.4,dbx,2018-11-22,DBX-4707,Update dropwizard dependency to fix CVE
+https://docs.splunk.com/Documentation/DBX/3.1.4/ReleaseNotes/Releasenotes,3.1.4,dbx,2018-11-22,DBX-4623,Compatibility issue with splunk_app_db_connect	3.1.3 and TA-Proofpoint-TAP	1.3.117 keeps DBX from loading.
+https://docs.splunk.com/Documentation/DBX/3.1.4/ReleaseNotes/Releasenotes,3.1.4,dbx,2018-11-08,DBX-4603,"On Windows systems, hitting debug/refresh endpoint with DB Connect installed makes splunkweb not restart"
+https://docs.splunk.com/Documentation/DBX/3.1.4/ReleaseNotes/Releasenotes,3.1.4,dbx,2018-11-08,DBX-4588,All source types from props.conf does not show on DBX 3.1.1
+https://docs.splunk.com/Documentation/DBX/3.1.4/ReleaseNotes/Releasenotes,3.1.4,dbx,2018-11-07,DBX-4638,Empty host on the connection and the input will fail the input
+https://docs.splunk.com/Documentation/DBX/3.1.4/ReleaseNotes/Releasenotes,3.1.4,dbx,2018-10-11,DBX-4637,HEC error message is not logged
+https://docs.splunk.com/Documentation/DBX/3.1.4/ReleaseNotes/Releasenotes,3.1.4,dbx,2018-04-05,DBX-4387,"Splunk cannot be restarted via web interface, deployer or deployment server on Windows"
+https://docs.splunk.com/Documentation/DBX/3.2.0/ReleaseNotes/Releasenotes,3.2.0,dbx,2019-08-02,DBX-4585,"Output does not work if column's name contains special characters i.e. dot, space"
+https://docs.splunk.com/Documentation/DBX/3.3.0/ReleaseNotes/Releasenotes,3.3.0,dbx,2020-01-17,DBX-3778,The app.conf and dbx_settings.conf are not replicated under cluster environment
+https://docs.splunk.com/Documentation/DBX/3.3.0/ReleaseNotes/Releasenotes,3.3.0,dbx,2020-01-03,DBX-4436,dbxquery fails with an OutOfMemoryError when returning large data set i.e. GB of data
+https://docs.splunk.com/Documentation/DBX/3.3.0/ReleaseNotes/Releasenotes,3.3.0,dbx,2019-11-06,DBX-4799,DB Connect 3.1.4 Not working with Solaris Adaptive Server Enterprise/16.0 SP02 PL07
+https://docs.splunk.com/Documentation/DBX/3.3.0/ReleaseNotes/Releasenotes,3.3.0,dbx,2019-10-08,DBX-4616,"Need to add extra backlash (escape) in GUI to be able to get literal backslash in query, but this breaks the query in the configuration file, preventing it from running after saving"
+https://docs.splunk.com/Documentation/DBX/3.3.1/ReleaseNotes/Releasenotes,3.3.1,dbx,2020-04-22,DBX-4998,dbxlookup fails after upgrade to 3.3.0
+https://docs.splunk.com/Documentation/DBX/3.4.0/ReleaseNotes/Releasenotes,3.4.0,dbx,2020-08-07,DBX-5029,"data of Decimal(15,2) output to Mysql, data 2 decimal was modified as (.00), it brings up the data inconsistent issues"
+https://docs.splunk.com/Documentation/DBX/3.4.0/ReleaseNotes/Releasenotes,3.4.0,dbx,2020-07-22,DBX-5078,DBXQuery hangs when running 'Execute SQL' Preview
+https://docs.splunk.com/Documentation/DBX/3.4.0/ReleaseNotes/Releasenotes,3.4.0,dbx,2020-07-08,DBX-5087,DBX output failing periodically when result set is greater than 100
+https://docs.splunk.com/Documentation/DBX/3.4.0/ReleaseNotes/Releasenotes,3.4.0,dbx,2020-06-24,DBX-5099,Error handling a request: java.lang.NullPointerException: null
+https://docs.splunk.com/Documentation/DBX/3.4.0/ReleaseNotes/Releasenotes,3.4.0,dbx,2020-06-17,DBX-4933,dbxlookup runs out of memory
+https://docs.splunk.com/Documentation/DBX/3.4.0/ReleaseNotes/Releasenotes,3.4.0,dbx,2020-05-29,DBX-5030,"Customer encountered the error ""stderr: UnicodeDecodeError: 'utf8'"" on DBX version 3.3.0, but not on DBX version 3.1.4 when doing ""| dbxquery"""
+https://docs.splunk.com/Documentation/DBX/3.4.0/ReleaseNotes/Releasenotes,3.4.0,dbx,2020-05-06,DBX-4988,Warnings of python.version on post Splunk 8
+https://docs.splunk.com/Documentation/DBX/3.4.1/ReleaseNotes/Releasenotes,3.4.1,dbx,2020-11-09,DBX-5169,`dbxquery` could not parse column value containing Chinese Traditional text
+https://docs.splunk.com/Documentation/DBX/3.4.1/ReleaseNotes/Releasenotes,3.4.1,dbx,2020-11-09,DBX-5233,`dbxquery` command in 3.4.0 stuck when running against Japanese column
+https://docs.splunk.com/Documentation/DBX/3.4.1/ReleaseNotes/Releasenotes,3.4.1,dbx,2020-11-06,DBX-5237,dbxquery_bridge.py causing CLOSE_WAIT issues
+https://docs.splunk.com/Documentation/DBX/3.4.1/ReleaseNotes/Releasenotes,3.4.1,dbx,2020-10-28,DBX-5188,"DB Connect does not handle usernames with email addresses: users cannot remove DB Connect connection - receives error: ""Splunkd error: HTTP 404 -- User does not exist"""
+https://docs.splunk.com/Documentation/DBX/3.4.2/ReleaseNotes/Releasenotes,3.4.2,dbx,2021-01-14,DBX-5327,"Rising Column UI issue - Failing step 4 in ""Set SQL Query"" page"
+https://docs.splunk.com/Documentation/DBX/3.4.2/ReleaseNotes/Releasenotes,3.4.2,dbx,2020-12-01,DBX-4968,DB Connect 3.2.0 checks for a uniqueKey parameter when using UPSERT when it does not need to
+https://docs.splunk.com/Documentation/DBX/3.5.1/ReleaseNotes/Releasenotes,3.5.1,dbx,2021-04-12,DBX-5464,DBX 3.4.2 tail_rising_column in db_inputs.conf not updating values on change
+https://docs.splunk.com/Documentation/DBX/3.5.1/ReleaseNotes/Releasenotes,3.5.1,dbx,2021-04-07,DBX-5155,Customer gets 'visualization not found' error when running queries in the SQL editor
+https://docs.splunk.com/Documentation/DBX/3.6.0/ReleaseNotes/Releasenotes,3.6.0,dbx,2021-06-16,DBX-5562,Issue creating input using DB connect(3.5.1) with MySQL(8.0.x)
+https://docs.splunk.com/Documentation/DBX/3.6.0/ReleaseNotes/Releasenotes,3.6.0,dbx,2021-06-03,DBX-5548,typo in dbx_app_migration.py causes issues with migration of inputs (DB_INPUTS_ALLOWED_LIST_3_0 // DB_INPUT_ALLOWED_LIST_3_0)
+https://docs.splunk.com/Documentation/DBX/3.6.0/ReleaseNotes/Releasenotes,3.6.0,dbx,2021-05-27,DBX-5387,Rising column fails in UI for step 4 of rising column input creation
+https://docs.splunk.com/Documentation/DBX/3.6.0/ReleaseNotes/Releasenotes,3.6.0,dbx,2021-05-12,DBX-5515,Change the port from the default 9999 for dbxquery server break it to not functions with error (Failed attempting to parse transport header: HTTP/1.1 400 HTTP/0.9 not supported\r) in search.log.
+https://docs.splunk.com/Documentation/DBX/3.7.0/ReleaseNotes/Releasenotes,3.7.0,dbx,2021-09-23,DBX-5606,"After DBX upgrade to version 3.6.0, all identities are shown as CyberArk identities on HFs"

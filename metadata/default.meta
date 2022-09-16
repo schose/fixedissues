@@ -1,0 +1,5 @@
+
+# Application-level permissions
+
+[]
+access = read : [ admin, sc_admin, power ], write : [ admin, sc_admin, power ]
