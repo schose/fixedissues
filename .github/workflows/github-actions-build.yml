@@ -56,6 +56,11 @@ jobs:
           crudini --set ./output/fixedissues/default/app.conf ui is_visible true
           crudini --set ./output/fixedissues/default/app.conf install is_configured true
           cat ./output/fixedissues/default/app.conf
+
+      - name: create sha256sum
+        run: |
+          shasum -a 256 *.tgz > output/release-sha256.txt
+
       #
       # Archive artifacts
       #
