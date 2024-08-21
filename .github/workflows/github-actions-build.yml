@@ -42,11 +42,9 @@ jobs:
           cp fixedissues-dbx.csv ../package/lookups
           python3 parse-splunk.py
           cp fixedissues-splunk.csv ../package/lookups/fixedissues.csv
-          crudini --set ../package/default/app.conf install build ${{ env.BUILD_NUMBER }}
-          cat ../package/default/app.conf
           python3 build.py --keep --submitappinspect --userappinspect "$SPLUNK_BASE_LOGIN" --passappinspect "$SPLUNK_BASE_PASSWD"
-          cat ../package/default/app.conf
-
+          crudini --set ../output/fixedissues/default/app.conf ui is_visible true
+          crudini --set ../output/fixedissues/default/app.conf install is_configured true
         id: build_build
 
       #
