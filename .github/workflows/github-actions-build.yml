@@ -43,10 +43,17 @@ jobs:
           python3 parse-splunk.py
           cp fixedissues-splunk.csv ../package/lookups/fixedissues.csv
           python3 build.py --keep --submitappinspect --userappinspect "$SPLUNK_BASE_LOGIN" --passappinspect "$SPLUNK_BASE_PASSWD"
-          crudini --set ../output/fixedissues/default/app.conf ui is_visible true
-          crudini --set ../output/fixedissues/default/app.conf install is_configured true
         id: build_build
 
+
+      - name: update app.conf settings because of uccgen
+        env:
+          SPLUNK_BASE_LOGIN: ${{ secrets.SPLUNK_BASE_LOGIN }}
+          SPLUNK_BASE_PASSWD: ${{ secrets.SPLUNK_BASE_PASSWD }}
+        run: |
+          crudini --set ./output/fixedissues/default/app.conf ui is_visible true
+          crudini --set ./output/fixedissues/default/app.conf install is_configured true
+          cat ./output/fixedissues/default/app.conf
       #
       # Archive artifacts
       #
