@@ -20,7 +20,7 @@ jobs:
 
       - name: Install tools
         run: |
-          apt install crudini -y
+          sudo apt install crudini -y
 
       - name: Install Python requirements
         run: |
