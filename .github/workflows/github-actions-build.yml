@@ -31,10 +31,14 @@ jobs:
           SPLUNK_BASE_LOGIN: ${{ secrets.SPLUNK_BASE_LOGIN }}
           SPLUNK_BASE_PASSWD: ${{ secrets.SPLUNK_BASE_PASSWD }}
         run: |
+          mkdir -p output
           cd build
-          python3 parse-dbx.py
           mkdir -p ../package/lookups
+          python3 parse-dbx.py
           cp fixedissues-dbx.csv ../package/lookups
+          python3 parse-splunk.py
+          cp fixedissues-splunk.csv ../package/lookups
+          python3 build.py --keep --submitappinspect --userappinspect "$SPLUNK_BASE_LOGIN" --passappinspect "$SPLUNK_BASE_PASSWD"
 
         id: build_build
 
