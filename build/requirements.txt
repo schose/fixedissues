@@ -1,2 +1,3 @@
 requests
 bs4
+splunk-add-on-ucc-framework>=5.44.0
