@@ -31,8 +31,12 @@ jobs:
           SPLUNK_BASE_LOGIN: ${{ secrets.SPLUNK_BASE_LOGIN }}
           SPLUNK_BASE_PASSWD: ${{ secrets.SPLUNK_BASE_PASSWD }}
         run: |
-          cd build; python3 build.py --keep --submitappinspect --userappinspect "$SPLUNK_BASE_LOGIN" --passappinspect "$SPLUNK_BASE_PASSWD"
-        id: build_and_submit_appinspect
+          cd build
+          python3 parse-dbx.py
+          mkdir -p ../package/lookups
+          cp fixedissues-dbx.csv ../package/lookups
+
+        id: build_build
 
       #
       # Archive artifacts
