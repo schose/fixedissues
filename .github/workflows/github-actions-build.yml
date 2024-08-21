@@ -59,7 +59,7 @@ jobs:
 
       - name: create sha256sum
         run: |
-          shasum -a 256 *.tgz > output/release-sha256.txt
+          shasum -a 256 output/*.tgz > output/release-sha256.txt
 
       #
       # Archive artifacts
