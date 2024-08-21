@@ -42,6 +42,8 @@ jobs:
           cp fixedissues-dbx.csv ../package/lookups
           python3 parse-splunk.py
           cp fixedissues-splunk.csv ../package/lookups/fixedissues.csv
+          python3 parse-splunkcloud.py
+          cp fixedissues-splunkcloud.csv ../package/lookups
           python3 build.py --keep --submitappinspect --userappinspect "$SPLUNK_BASE_LOGIN" --passappinspect "$SPLUNK_BASE_PASSWD"
         id: build_build
 

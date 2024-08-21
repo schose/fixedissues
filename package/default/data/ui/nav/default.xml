@@ -1,5 +1,6 @@
 <nav search_view="search">
   <view name="issues" default='true' />
+  <view name="issues-splunkcloud"  />
   <view name="issues-dbx"  />
   <view name="search" />
 </nav>

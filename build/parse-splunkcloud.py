@@ -49,7 +49,7 @@ for version in versions:
 
         resolved = []
         for table in selecttable:
-            if "Date resolved" in table.text:
+            if "Date filed" in table.text:
                 # print(table.text)
                 for row in table.findAll('tr'):
                     columns = row.findAll('td')
