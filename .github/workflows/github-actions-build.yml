@@ -18,6 +18,10 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: Install tools
+        run: |
+          sudo apt install crudini -y
+
       - name: Install Python requirements
         run: |
           pip install -r build/requirements.txt
@@ -31,13 +35,27 @@ jobs:
           SPLUNK_BASE_LOGIN: ${{ secrets.SPLUNK_BASE_LOGIN }}
           SPLUNK_BASE_PASSWD: ${{ secrets.SPLUNK_BASE_PASSWD }}
         run: |
+          mkdir -p output
           cd build
-          python3 parse-dbx.py
           mkdir -p ../package/lookups
+          python3 parse-dbx.py
           cp fixedissues-dbx.csv ../package/lookups
-
+          python3 parse-splunk.py
+          cp fixedissues-splunk.csv ../package/lookups/fixedissues.csv
+          python3 parse-splunkcloud.py
+          cp fixedissues-splunkcloud.csv ../package/lookups
+          python3 build.py --keep --submitappinspect --userappinspect "$SPLUNK_BASE_LOGIN" --passappinspect "$SPLUNK_BASE_PASSWD"
         id: build_build
 
+
+      - name: update app.conf settings because of uccgen
+        env:
+          SPLUNK_BASE_LOGIN: ${{ secrets.SPLUNK_BASE_LOGIN }}
+          SPLUNK_BASE_PASSWD: ${{ secrets.SPLUNK_BASE_PASSWD }}
+        run: |
+          crudini --set ./output/fixedissues/default/app.conf ui is_visible true
+          crudini --set ./output/fixedissues/default/app.conf install is_configured true
+          cat ./output/fixedissues/default/app.conf
       #
       # Archive artifacts
       #

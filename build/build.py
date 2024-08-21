@@ -244,6 +244,18 @@ def gen_app():
             logging.error(f'failed to retrieve the build number with exception="{e}"')
             sys.exit(1)
 
+        # write is_visable to app.conf
+        try:
+            configw = configparser.ConfigParser()
+            configw.read(os.path.join(app_root, "default", "app.conf"))
+            configw.set("ui", "is_visible", "true")
+            with open(os.path.join(app_root, "default", "app.conf"), "w") as configfile:
+                configw.write(configfile)
+            
+        except Exception as e:
+            logging.error(f'cannot write to app.conf file.. exception="{e}"')
+            sys.exit(1)
+
         # save the version number to a simple text file for further usage
         version_number_file = "version_full.txt"
         with open(version_number_file, "w") as f:
