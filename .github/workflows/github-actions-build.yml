@@ -18,6 +18,10 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: Install tools
+        run: |
+          apt install crudini -y
+
       - name: Install Python requirements
         run: |
           pip install -r build/requirements.txt
@@ -37,7 +41,8 @@ jobs:
           python3 parse-dbx.py
           cp fixedissues-dbx.csv ../package/lookups
           python3 parse-splunk.py
-          cp fixedissues-splunk.csv ../package/lookups
+          cp fixedissues-splunk.csv ../package/lookups/fixedissues.csv
+          crudini --set ../package/default/app.conf install build ${{ env.BUILD_NUMBER }}
           python3 build.py --keep --submitappinspect --userappinspect "$SPLUNK_BASE_LOGIN" --passappinspect "$SPLUNK_BASE_PASSWD"
 
         id: build_build
