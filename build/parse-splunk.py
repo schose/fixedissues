@@ -1,104 +1,124 @@
 import requests
-import smtplib
 import re
+import json
 from bs4 import BeautifulSoup
 import csv
- 
-def get_versions():
 
-    url = 'https://docs.splunk.com/Documentation/Splunk/latest/ReleaseNotes/Knownissues'
-    website = requests.get(url)
-    results = BeautifulSoup(website.content, 'html.parser')
-    select = results.find_all('select', id="version-select")
-    
-    versions = select[0].contents
-    dbxversions = []
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+}
 
-    for t in versions:
-        try: 
-            matches = re.search('value=\"(\d\.\d\.\d+)\"', str(t))
-            dbxversions.append(matches.group(1))
-        except:
-            print("not valid: " + str(t))
+def get_versions_from_dockerhub():
+    """Get all MAJOR.MINOR.PATCH versions from Docker Hub splunk/splunk tags"""
+    versions = set()
+    url = 'https://hub.docker.com/v2/repositories/splunk/splunk/tags?page_size=100'
 
+    while url:
+        print(f"Fetching Docker Hub tags...")
+        response = requests.get(url, headers=HEADERS)
+        data = response.json()
 
-    return dbxversions
+        for tag in data.get('results', []):
+            name = tag.get('name', '')
+            # Match only MAJOR.MINOR.PATCH format (e.g., 9.4.0, 10.0.2)
+            if re.match(r'^\d+\.\d+\.\d+$', name):
+                versions.add(name)
+
+        # Get next page URL
+        url = data.get('next')
+
+    # Sort versions in descending order
+    sorted_versions = sorted(versions, key=lambda v: [int(x) for x in v.split('.')], reverse=True)
+    print(f"Found {len(sorted_versions)} versions from Docker Hub")
+
+    return sorted_versions
 
 def filter_versions(versions):
-    
+    """Filter to only include versions >= 9"""
     outversions = []
     for version in versions:
-        if re.search("^[789]",version):
-        #if re.search("^8\.2",version):
+        major = int(version.split('.')[0])
+        if major >= 9:
             outversions.append(version)
-    
-    print(outversions)
+
+    print(f"Filtered versions: {outversions}")
     return outversions
 
-versions = [
-    #'8.2.0',
-    '8.2.1'
-]
+def build_url(version):
+    """Build the API URL for a specific version like 9.4.7"""
+    # API pattern: https://docs.splunk.com/api.php?action=parse&page=JIRA:SPL-9.4.7-changelog&prop=text&format=json
+    return f"https://docs.splunk.com/api.php?action=parse&page=JIRA:SPL-{version}-changelog&prop=text&format=json"
 
-versions = get_versions()
-versions = filter_versions(versions)
+# Get all versions to scrape
+all_versions = get_versions_from_dockerhub()
+versions = filter_versions(all_versions)
 
 resolvedissues = {}
 for version in versions:
-    URL = 'https://docs.splunk.com/Documentation/Splunk/'+version+'/ReleaseNotes/Fixedissues'
-    print("parsing " + str(URL))
-    website = requests.get(URL)
-    results = BeautifulSoup(website.content, 'html.parser')
+    URL = build_url(version)
+    print(f"parsing {version}")
 
-    selectcontent = results.find_all('div', {"class": "mw-parser-output"})
-    #print(str(selectcontent[0]))
+    try:
+        response = requests.get(URL, headers=HEADERS)
 
-    resultstable = BeautifulSoup(str(selectcontent[0]), 'html.parser')
-    selectcategories = results.find_all('span', {"class": "mw-headline"})
+        # Skip if page not found
+        if response.status_code == 404:
+            print(f"  -> 404 not found, skipping")
+            continue
 
-    resolved = []
+        data = response.json()
 
-    
-    for category in selectcategories:
-        if category.text not in "Fixed issues":
-            #print(category.text)
-            next = category.next_element
-            next = next.next_element
-            next = next.next_element
-          #  next = next.next_element # table
+        # Check if the page exists (API returns 'error' key if not)
+        if 'error' in data:
+            print(f"  -> page not found, skipping")
+            continue
 
-            for row in next.findAll('tr'):
-                    columns = row.findAll('td')
-                    #print(columns)
-                    if len(columns) > 0:
-                        n = 0
-                        outrow = {}
-                        for column in columns:
-                            outrow['url'] = URL
-                            outrow['category'] = category.text
-                            if n==0:
-                                outrow['resolved'] = column.text
-                            if n==1:
-                                outrow['issuenr'] = column.text
-                            if n==2:
-                                outrow['description'] = column.text
-                            n = n + 1
-                        resolved.append(outrow)
+        # Extract HTML content from JSON response
+        html_content = data['parse']['text']['*']
+        results = BeautifulSoup(html_content, 'html.parser')
+
+        # Find all tables on the page
+        tables = results.find_all('table')
+
+        resolved = []
+        for table in tables:
+            for row in table.find_all('tr'):
+                columns = row.find_all('td')
+                if len(columns) >= 3:
+                    outrow = {
+                        'url': URL,
+                        'resolved': columns[0].text.strip(),
+                        'issuenr': columns[1].text.strip(),
+                        'description': columns[2].text.strip()
+                    }
+                    resolved.append(outrow)
+
         if len(resolved) > 0:
             resolvedissues[version] = resolved
+            print(f"  -> found {len(resolved)} issues")
+        else:
+            print(f"  -> no issues found")
+
+    except Exception as e:
+        print(f"  -> error: {e}")
 
 outfile = "fixedissues-splunk.csv"
 
 with open(outfile, "w") as filenew:
-
-    fieldnames = ["url","version","category","resolveddate","spl","description"]
+    fieldnames = ["url", "version", "category", "resolveddate", "spl", "description"]
     writer = csv.DictWriter(filenew, fieldnames=fieldnames)
     writer.writeheader()
-    
+
     for version, values in resolvedissues.items():
-        #print("version: " + str(version))
         for value in values:
-            #print("value: " + str(value))
-            writer.writerow({'url': value['url'],'version': version, 'category': value['category'], \
-                'resolveddate': value['resolved'], 'spl': value['issuenr'], \
-                'description': value['description']})
+            writer.writerow({
+                'url': value['url'],
+                'version': version,
+                'category': 'splunk',
+                'resolveddate': value['resolved'],
+                'spl': value['issuenr'],
+                'description': value['description']
+            })
+
+print(f"\nOutput written to {outfile}")
+print(f"Total versions with issues: {len(resolvedissues)}")
