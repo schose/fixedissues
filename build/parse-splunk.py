@@ -44,10 +44,17 @@ def filter_versions(versions):
     print(f"Filtered versions: {outversions}")
     return outversions
 
-def build_url(version):
+def build_api_url(version):
     """Build the API URL for a specific version like 9.4.7"""
     # API pattern: https://docs.splunk.com/api.php?action=parse&page=JIRA:SPL-9.4.7-changelog&prop=text&format=json
     return f"https://docs.splunk.com/api.php?action=parse&page=JIRA:SPL-{version}-changelog&prop=text&format=json"
+
+def build_help_url(version):
+    """Build the help URL for a specific version like 9.4.5"""
+    # Help URL pattern: https://help.splunk.com/en/splunk-enterprise/release-notes-and-updates/release-notes/9.4/fixed-issues/fixed-issues/splunk-enterprise-9.4.5-fixed-issues
+    parts = version.split('.')
+    major_minor = f"{parts[0]}.{parts[1]}"
+    return f"https://help.splunk.com/en/splunk-enterprise/release-notes-and-updates/release-notes/{major_minor}/fixed-issues/fixed-issues/splunk-enterprise-{version}-fixed-issues"
 
 # Get all versions to scrape
 all_versions = get_versions_from_dockerhub()
@@ -55,7 +62,7 @@ versions = filter_versions(all_versions)
 
 resolvedissues = {}
 for version in versions:
-    URL = build_url(version)
+    URL = build_api_url(version)
     print(f"parsing {version}")
 
     try:
@@ -77,21 +84,39 @@ for version in versions:
         html_content = data['parse']['text']['*']
         results = BeautifulSoup(html_content, 'html.parser')
 
-        # Find all tables on the page
-        tables = results.find_all('table')
-
+        # Find all headline spans with class mw-headline to get categories
+        # Each headline is followed by a table, and the id attribute is the category
         resolved = []
-        for table in tables:
-            for row in table.find_all('tr'):
-                columns = row.find_all('td')
-                if len(columns) >= 3:
-                    outrow = {
-                        'url': URL,
-                        'resolved': columns[0].text.strip(),
-                        'issuenr': columns[1].text.strip(),
-                        'description': columns[2].text.strip()
-                    }
-                    resolved.append(outrow)
+
+        # Find all mw-headline elements
+        headlines = results.find_all('span', class_='mw-headline')
+
+        for headline in headlines:
+            category = headline.get('id', 'unknown')
+
+            # Find the next table after this headline
+            # Navigate up to the parent heading element, then find the next table sibling
+            parent = headline.find_parent(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
+            if parent:
+                # Find the next table sibling
+                table = parent.find_next_sibling('table')
+                if not table:
+                    # Sometimes the table might be wrapped in a div
+                    next_elem = parent.find_next_sibling()
+                    if next_elem:
+                        table = next_elem.find('table') if next_elem.name != 'table' else next_elem
+
+                if table:
+                    for row in table.find_all('tr'):
+                        columns = row.find_all('td')
+                        if len(columns) >= 3:
+                            outrow = {
+                                'category': category,
+                                'resolved': columns[0].text.strip(),
+                                'issuenr': columns[1].text.strip(),
+                                'description': columns[2].text.strip()
+                            }
+                            resolved.append(outrow)
 
         if len(resolved) > 0:
             resolvedissues[version] = resolved
@@ -110,11 +135,12 @@ with open(outfile, "w") as filenew:
     writer.writeheader()
 
     for version, values in resolvedissues.items():
+        help_url = build_help_url(version)
         for value in values:
             writer.writerow({
-                'url': value['url'],
+                'url': help_url,
                 'version': version,
-                'category': 'splunk',
+                'category': value.get('category', 'unknown'),
                 'resolveddate': value['resolved'],
                 'spl': value['issuenr'],
                 'description': value['description']

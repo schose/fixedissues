@@ -11,9 +11,9 @@
         <query>
   <![CDATA[         
 | inputlookup fixedissues.csv 
-| rex field=url "\/(?<major>\d+)\.(?<submajor>\d+)\.(?<minor>\d+)\/" 
-| eval version=major+"."+submajor+"."+minor
-| eval versionscore=major*1000 + submajor*100 + minor
+| rex field=url "(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)" 
+| eval version=major+"."+minor+"."+patch
+| eval versionscore=major*1000 + minor*100 + patch
 | dedup versionscore
 | table version versionscore
  ]]>         
@@ -36,13 +36,13 @@
             
 <![CDATA[        
 | inputlookup fixedissues.csv 
-| rex field=url "\/(?<major>\d+)\.(?<submajor>\d+)\.(?<minor>\d+)\/" 
-| eval version=major+"."+submajor+"."+minor
-| eval versionscore=major*1000 + submajor*100 + minor
+| rex field=url "(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)" 
+| eval version=major+"."+minor+"."+patch
+| eval versionscore=major*1000 + minor*100 + patch
 | eval spl=split(replace(replace(spl,"-","")," ",""),",")
 | search $category$ versionscore>=$versionscore$ (category=*$searchstr$* OR description=*$searchstr$* OR spl=*$searchstr$*)
 | table *date* version *
-| fields - major submajor minor versionscore
+| fields - major minor patch versionscore
 | stats count
 ]]>            
             </query>
@@ -80,9 +80,9 @@
           <query>
    <![CDATA[        
 | inputlookup fixedissues.csv
-| rex field=url "\/(?<major>\d+)\.(?<submajor>\d+)\.(?<minor>\d+)\/" 
-| eval version=major+"."+submajor+"."+minor
-| eval versionscore=major*1000 + submajor*100 + minor
+| rex field=url "(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)" 
+| eval version=major+"."+minor+"."+patch
+| eval versionscore=major*1000 + minor*100 + patch
 | search versionscore>=$versionscore$
 | stats values(category) as category 
 | mvexpand category
@@ -101,13 +101,13 @@
           <query>
 <![CDATA[        
 | inputlookup fixedissues.csv 
-| rex field=url "\/(?<major>\d+)\.(?<submajor>\d+)\.(?<minor>\d+)\/" 
-| eval version=major+"."+submajor+"."+minor
-| eval versionscore=major*1000 + submajor*100 + minor
+| rex field=url "(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)" 
+| eval version=major+"."+minor+"."+patch
+| eval versionscore=major*1000 + minor*100 + patch
 | eval spl=split(replace(replace(spl,"-","")," ",""),",")
 | search $category$ versionscore>=$versionscore$ (category=*$searchstr$* OR description=*$searchstr$* OR spl=*$searchstr$*)
 | table *date* version *
-| fields - major submajor minor versionscore
+| fields - major minor patch versionscore
 ]]>
           
           
