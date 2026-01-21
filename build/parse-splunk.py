@@ -38,7 +38,7 @@ def filter_versions(versions):
     outversions = []
     for version in versions:
         major = int(version.split('.')[0])
-        if major >= 9:
+        if major >= 7:
             outversions.append(version)
 
     print(f"Filtered versions: {outversions}")
