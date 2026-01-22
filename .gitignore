@@ -2,3 +2,5 @@ venv/
 output
 *.pyc
 .DS_Store
+.vscode
+*.csv

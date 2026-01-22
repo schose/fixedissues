@@ -4,24 +4,24 @@ import re
 from bs4 import BeautifulSoup
 import csv
 
+
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+}
+
 def getversions():
 
     url = 'https://docs.splunk.com/Documentation/SplunkCloud/latest/ReleaseNotes'
-    website = requests.get(url)
-    results = BeautifulSoup(website.content, 'html.parser')
-    select = results.find_all('select', id="version-select")
-    
-    versions = select[0].contents
-    dbxversions = []
+    website = requests.get(url, headers=HEADERS)
 
-    for t in versions:
-        try: 
-            matches = re.search('value=\"(\d\.\d+\.\d{4})\"', str(t))
-            dbxversions.append(matches.group(1))
-        except:
-            print("not valid: " + str(len(t)))
+    # Extract version patterns (e.g., 9.3.2411) from the page
+    # The page now redirects to help.splunk.com and versions are embedded in scripts/links
+    all_versions = set(re.findall(r'\d+\.\d+\.\d{4}', website.text))
 
+    # Sort versions in descending order (newest first)
+    dbxversions = sorted(all_versions, reverse=True)
 
+    print(f"Found versions: {dbxversions}")
     return dbxversions
 
 versions = [
@@ -37,19 +37,16 @@ resolvedissues = {}
 for version in versions:
     URL = 'https://docs.splunk.com/Documentation/SplunkCloud/'+version+'/ReleaseNotes/Issues'
     print("parsing " + str(URL))
-    website = requests.get(URL)
+    website = requests.get(URL, headers=HEADERS)
     results = BeautifulSoup(website.content, 'html.parser')
 
-    try: 
-        selectcontent = results.find_all('div', {"class": "mw-parser-output"})
-        #print(str(selectcontent[0]))
-
-        resultstable = BeautifulSoup(str(selectcontent[0]), 'html.parser')
+    try:
         selecttable = results.find_all('table')
 
         resolved = []
         for table in selecttable:
-            if "Date filed" in table.text:
+            # Check for tables with date/issue columns (handle both old and new header formats)
+            if "Date filed" in table.text or "Issue number" in table.text:
                 # print(table.text)
                 for row in table.findAll('tr'):
                     columns = row.findAll('td')

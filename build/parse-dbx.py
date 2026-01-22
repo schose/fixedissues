@@ -7,7 +7,10 @@ import csv
 def getversions():
 
     url = 'https://docs.splunk.com/Documentation/DBX/latest/ReleaseNotes/Releasenotes'
-    website = requests.get(url)
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    }
+    website = requests.get(url, headers=headers)
     results = BeautifulSoup(website.content, 'html.parser')
     select = results.find_all('select', id="version-select")
     
@@ -35,9 +38,15 @@ versions = getversions()
 
 resolvedissues = {}
 for version in versions:
+
+    url = 'https://docs.splunk.com/Documentation/DBX/latest/ReleaseNotes/Releasenotes'
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    }
+
     URL = 'https://docs.splunk.com/Documentation/DBX/'+version+'/ReleaseNotes/Releasenotes'
     print("parsing " + str(URL))
-    website = requests.get(URL)
+    website = requests.get(URL, headers=headers)
     results = BeautifulSoup(website.content, 'html.parser')
 
     try: 
